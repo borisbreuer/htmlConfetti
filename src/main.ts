@@ -5,7 +5,7 @@ import './style.css'
 const confettiApp = () => {
   const init = (sketch: HTMLDivElement, confettiMouse: ConfettiMouse, systems: PSystem[]) => {
     if(systems.length < 6) systems.push(new PSystem(sketch, confettiMouse.x, confettiMouse.y))
-    }
+  }
 
   const animate = (systems: PSystem[]) => {
     let loop: boolean = true
