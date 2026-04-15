@@ -3,6 +3,8 @@ export class Particle {
   y: number
   velX: number
   velY: number
+  shapeVelX: number
+  shapeVelY: number
   accX: number
   accY: number
   size: number
@@ -14,6 +16,8 @@ export class Particle {
     this.y = y
     this.velX = 0
     this.velY = 0
+    this.shapeVelX = 0
+    this.shapeVelY = 0
     this.accX = 0
     this.accY = 0
     this.size = size
@@ -34,9 +38,6 @@ export class Particle {
   move() {
     this.p.style.left = (this.x += this.accX) + 'px'
     this.p.style.top = (this.y += this.accY) + 'px'
-    // this.hsl.l = Math.random() > 0.1 ? 60 : 40
-    // this.hsl.s = Math.random() < 0.1 ? 55 : 75
-    // this.p.style.backgroundColor = `hsl(${this.hsl.h} , ${this.hsl.s}%, ${this.hsl.l}%)`
   }
   
   applyForce(x: number, y: number) {

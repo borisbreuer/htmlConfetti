@@ -1,4 +1,4 @@
-export class ConfettiMouse {
+export class Mouse {
   x: number
   y: number
   constructor() {

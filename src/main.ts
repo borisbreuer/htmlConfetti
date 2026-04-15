@@ -1,13 +1,17 @@
-import { ConfettiMouse } from './ConfettiMouse'
-import { PSystem } from './ParticleSystem'
+import { Mouse } from './Mouse'
+// import { ConfettiMouse } from './Mouse'
+import { Confetti } from './Confetti'
+import { Heart } from './Heart'
 import './style.css'
 
 const confettiApp = () => {
-  const init = (sketch: HTMLDivElement, confettiMouse: ConfettiMouse, systems: PSystem[]) => {
-    if(systems.length < 6) systems.push(new PSystem(sketch, confettiMouse.x, confettiMouse.y))
+  const init = (sketch: HTMLDivElement, mouse: Mouse, systems: Confetti[] & Heart[]) => {
+    if(systems.length < 6) {
+      Math.random() > 0.80 ? systems.push(new Heart(sketch, mouse.x, mouse.y)) : systems.push(new Confetti(sketch, mouse.x, mouse.y))
+    }
   }
 
-  const animate = (systems: PSystem[]) => {
+  const animate = (systems: Confetti[] & Heart[]) => {
     let loop: boolean = true
     let animationID: number
     for(let i = systems.length - 1; i >= 0; i--) {
@@ -20,9 +24,9 @@ const confettiApp = () => {
     if(loop !== true) cancelAnimationFrame(animationID)
   }
 
-  const mouseMoveHandler = (event: MouseEvent, confettiMouse: ConfettiMouse) => {
-    confettiMouse.x = event.clientX
-    confettiMouse.y = event.clientY
+  const mouseMoveHandler = (event: MouseEvent, mouse: Mouse) => {
+    mouse.x = event.clientX
+    mouse.y = event.clientY
   }
 
   const swapSketch = (sketch: HTMLDivElement) => {
@@ -39,13 +43,12 @@ const confettiApp = () => {
   let sketch: HTMLDivElement = document.querySelector('#appConfetti') !
   swapSketch(sketch)
 
-  let confettiMouse: ConfettiMouse = new ConfettiMouse()
-  document.addEventListener('mousemove', (e) => mouseMoveHandler(e, confettiMouse))
+  let mouse: Mouse = new Mouse()
+  document.addEventListener('mousemove', (e) => mouseMoveHandler(e, mouse))
 
-  let systems: PSystem[] = []
-  document.addEventListener('mousedown', () => init(sketch, confettiMouse, systems))
+  let systems: Confetti[] & Heart[] = []
+  document.addEventListener('mousedown', () => init(sketch, mouse, systems))
   animate(systems)
 }
 
 window.addEventListener('load', confettiApp)
-

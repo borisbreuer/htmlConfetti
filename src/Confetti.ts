@@ -1,6 +1,6 @@
 import { Particle } from "./Particle"
 
-export class PSystem {
+export class Confetti {
   sketch: HTMLElement
   mouseX: number
   mouseY: number
