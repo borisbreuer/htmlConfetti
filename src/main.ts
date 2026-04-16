@@ -7,7 +7,7 @@ import './style.css'
 const confettiApp = () => {
   const init = (sketch: HTMLDivElement, mouse: Mouse, systems: Confetti[] & Heart[]) => {
     if(systems.length < 6) {
-      Math.random() > 0.80 ? systems.push(new Heart(sketch, mouse.x, mouse.y)) : systems.push(new Confetti(sketch, mouse.x, mouse.y))
+      Math.random() > 0.50 ? systems.push(new Heart(sketch, mouse.x, mouse.y)) : systems.push(new Confetti(sketch, mouse.x, mouse.y))
     }
   }
 
